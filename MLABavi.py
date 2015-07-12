@@ -8,7 +8,7 @@ import numpy as np
 from scipy.misc import imread
 
 class MLABavi(object):
-    
+
     def __init__(self, raw,  post):
         self.raw = raw
         self.post = post
@@ -16,21 +16,15 @@ class MLABavi(object):
     def import_avi(self):
         try:
             os.stat(os.path.dirname(__file__) +"/MLABavi")
-            print "existuje .."
         except:
             os.mkdir(os.path.dirname(__file__) +"/MLABavi")
-            print "je vytvoren novy"
-        print "----------"
         print "ffmpeg -y -t 0 -i self.raw "+ self.raw + " " + os.path.dirname(__file__) +"/MLABavi" +"/image.png"
         print call(["ffmpeg -y -t 0 -i "+ self.raw + " " + os.path.dirname(__file__) +"/MLABavi" +"/image.png"], shell=True)
-        print "pokračuji ------------------"
         window = gimp.Image(500, 500, GRAY)
         mImage = pdb.file_png_load(os.path.dirname(__file__) +"/MLABavi" +"/image.png", os.path.dirname(__file__) +"/MLABavi" +"/image.png")
         print mImage
         print window
 
-        print "pokračuji ------------------"
-      
         sarr= imread(os.path.dirname(__file__) +"/MLABavi" +"/image.png", True)
          
         mLayer = gimp.Layer(mImage, "SecondLayer", mImage.width, mImage.height, RGB_IMAGE, 100, NORMAL_MODE)
@@ -64,8 +58,6 @@ class MLABavi(object):
 #                                (sarr[x*2+0][y*2+1]),
 #                                255]
 #
-
-
                 colourGRBG = [     (sarr[x*2+0][y*2+1]),  # BGGR
                                 int((sarr[x*2+0][y*2+0] + sarr[x*2+1][y*2+1])/2),
                                     (sarr[x*2+1][y*2+0]),
@@ -82,18 +74,6 @@ class MLABavi(object):
                 arrOUT[x*2+0][y*2+1] = (colour)     # UR - RED
                 arrOUT[x*2+1][y*2+0] = (colour)     # DL - RED
 
-
-        #for x in range(0,(sarr.shape[0])):  # radek
-        #    print x, " z ", sarr.shape[0]
-        #    for y in range(0,(sarr.shape[1])):  # sloupec
-        #        if   (x%2==0 and y%2==0) or (x%2!=0 and y%2!=0):
-        #            arrOUT[int(x)][int(y)] = [0,sarr[x][y],0,255]
-        #        elif x%2==0 and y%2!=0:
-        #            arrOUT[int(x)][int(y)] = [0,0,sarr[x][y],255]
-        #        elif x%2!=0 and y%2==0:
-        #            arrOUT[int(x)][int(y)] = [sarr[x][y],0,0,255]
-
-        
         if self.post: # post-processing, který vyzaduje numpy pole
             try:
                 pass
@@ -112,12 +92,8 @@ class MLABavi(object):
             except Exception, e:
                 print e
 
-            
         gimp.Display(mImage)
         gimp.displays_flush()
-
-
-
 
 def run(raw, post):
     mclass = MLABavi(raw, post)
