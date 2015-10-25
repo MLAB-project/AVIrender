@@ -1,5 +1,7 @@
 # AVIrender
 
+Utility which renderd ucview raw AVI files in to colored image. 
+
 ##render avi file
 * open gimp
 * File/create/Otevrit MLAB avi
