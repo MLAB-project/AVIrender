@@ -8,6 +8,9 @@ Utility which renderd ucview raw AVI files in to colored image.
 
 ##Instalation
 
+Install prerequisites: 
+    sudo apt-get install ffmpeg
+
 copy MLABavi.py file to gimp plung-ins folder
   
 ###in Ubuntu 14.10
